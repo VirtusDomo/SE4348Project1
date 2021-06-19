@@ -45,7 +45,7 @@ int main(){
   if(pid1 == 0){
     //Child 1 Processes
     
-    int c = 0;
+    int c = 1;
     //char arrray that will read directory entries content
     string temp1[5];
     DIR *d1;
@@ -58,22 +58,24 @@ int main(){
       while((dir1 = readdir(d1))!= NULL){
         //printf("%s\n", dir1->d_name);
         cout << dir1->d_name << endl;
+        string tmp = dir1->d_name;
         if(strcmp(dir1->d_name, ".")!=0 && strcmp(dir1->d_name, "..")!=0){
           //Anything not "." or ".." will be opened and it's string stored into an array
-          fstream take(dir1->d_name);
+          //this should hopefully make it a full path - hard coded and will look for alternative later
+          fstream take("/home/virtus/Desktop/Class/SE-4348/Project1/d1/" + tmp);
           //Checks if file can be opened
-          if(!take){//THIS IS THE PROBLEM ++ RIGHT NOW FILES CAN'T BE OPENED FOR SOME REASON, THEY CAN BE SEEN IN THE DIRECTORY BUT WE CAN"T SEEM TO READ THEM
-                    // LOOK INTO THIS FURTHER. 
+          if(!take){
             cerr << "File: " << dir1->d_name << " failed to be opened." << endl;
             return EXIT_FAILURE;
           }
           //Reads individual files contents into arrays
           string str;
           while(getline(take, str)){
-            temp1[c] = str;
-            cout << temp1[c] << endl;
+            temp1[c-1] = str;
+            cout << temp1[c-1] << endl;
           }
           take.close();
+          //ERROR OF NOTICE: 3RD FILE in D1 isnt't being properly read, and no particular order is ever maintained in execution. Look for ways to solve. 
         }
         //Iteration for array
         c++;
