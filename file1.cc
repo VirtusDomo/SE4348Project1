@@ -30,10 +30,28 @@ int readdir_r(DIR *dirp, struct dirent *entry, struct dirent **result);
 int main(){
   
   //Creating fork process that run same program after the initial instruction
-  
-  //First and Second Child Created 
-  int pid1 = fork();
-  int pid2 = fork();
+  pid_t pid1, pid2;
+
+  (pid1 = fork())&&(pid2 = fork()); //Creates two children
+
+  if(pid1 < 0 || pid2 < 0){
+    cerr << "A Fork call failed, please check child processes!"  << endl;
+    cout << "Child 1: " << pid1 << endl;
+    cout << "Child 2: " << pid2 << endl;
+  }else if(pid1 == 0){
+    //Child 1 Processes
+
+  }else if(pid2 == 0){
+    //Child 2 Processes 
+
+  }else{
+    //Parent Processes
+    
+  }
+
+
+
+
 
   if(pid1 < 0 || pid2 < 0){
     cerr << "A Fork call failed, please check child processes!"  << endl;
