@@ -44,10 +44,10 @@ int main(){
 
   if(pid1 == 0){
     //Child 1 Processes
-    ifstream take;
+    
     int c = 0;
     //char arrray that will read directory entries content
-    char temp1[5][50];
+    string temp1[5];
     DIR *d1;
     struct dirent *dir1;
     d1 = opendir("d1");
@@ -57,12 +57,25 @@ int main(){
       //Returns the list of all entries within the directory 
       while((dir1 = readdir(d1))!= NULL){
         //printf("%s\n", dir1->d_name);
-        //cout << dir1->d_name << endl;
+        cout << dir1->d_name << endl;
         if(strcmp(dir1->d_name, ".")!=0 && strcmp(dir1->d_name, "..")!=0){
-          take.open(dir1->d_name);
-          take >> temp1[c][50];
-          cout << temp1[c][50];
+          //Anything not "." or ".." will be opened and it's string stored into an array
+          fstream take(dir1->d_name);
+          //Checks if file can be opened
+          if(!take){//THIS IS THE PROBLEM ++ RIGHT NOW FILES CAN'T BE OPENED FOR SOME REASON, THEY CAN BE SEEN IN THE DIRECTORY BUT WE CAN"T SEEM TO READ THEM
+                    // LOOK INTO THIS FURTHER. 
+            cerr << "File: " << dir1->d_name << " failed to be opened." << endl;
+            return EXIT_FAILURE;
+          }
+          //Reads individual files contents into arrays
+          string str;
+          while(getline(take, str)){
+            temp1[c] = str;
+            cout << temp1[c] << endl;
+          }
+          take.close();
         }
+        //Iteration for array
         c++;
       }
       closedir(d1);
@@ -71,10 +84,11 @@ int main(){
   }else if(pid2 == 0){
     //Child 2 Processes
 
-    ifstream take2;
+    fstream take2;
 
     //char array that will read directory entries content
     char temp2[5][50];
+    string str;
     int d = 0;
     DIR *d2;
     struct dirent *dir2;
@@ -84,12 +98,12 @@ int main(){
       printf("This  Process is Child 2 of the Fork=%d\n", pid2);
       //Returns the list of all entries within the directory
       while((dir2 = readdir(d2))!= NULL){
-        //printf("%s\n", dir2->d_name);
-        //cout << dir2->d_name << endl;
+        cout << dir2->d_name << endl;
         if(strcmp(dir2->d_name, ".")!=0 && strcmp(dir2->d_name, "..")!=0){
           take2.open(dir2->d_name);
-          take2 >> temp2[d][50];
-          cout << temp2[d][50];
+          //take2 >> temp2[d][50];
+          take2 >> str;
+          cout << str << endl;
         }
         d++;
       }
