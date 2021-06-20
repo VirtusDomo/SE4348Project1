@@ -27,6 +27,8 @@ OBJS = $(patsubst %.cc,%.o,$(SRCS))
 
 all: $(EXEC)
 
+spec: $(EXECS)
+
 clean:
 	rm -f $(OBJS) *.d *~ \#* *.out $(EXEC)
 

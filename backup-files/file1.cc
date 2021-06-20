@@ -14,7 +14,6 @@
 #include <iostream> 
 #include <string.h>
 #include <iomanip>
-#include <stdlib.h>
 #include <stdio.h>
 #include <sys/types.h>
 #include <unistd.h>
@@ -33,7 +32,7 @@ int main(){
   
   //Creating fork process that run same program after the initial instruction
   pid_t pid1, pid2;
-
+  int status = 0;
   (pid1 = fork())&&(pid2 = fork()); //Creates two children
   /*
   if(pid1 == 0){
@@ -57,7 +56,7 @@ int main(){
       //Returns the list of all entries within the directory 
       while((dir1 = readdir(d1))!= NULL){
         //printf("%s\n", dir1->d_name);
-        cout << dir1->d_name << endl;
+        cout << dir1->d_name << endl << std::flush;
         string tmp = dir1->d_name;
         if(strcmp(dir1->d_name, ".")!=0 && strcmp(dir1->d_name, "..")!=0){
           //Anything not "." or ".." will be opened and it's string stored into an array
