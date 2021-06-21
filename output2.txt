@@ -1,0 +1,32 @@
+wvu4.txt
+thiswillbethe4thtestfordirectory2
+Num of Bytes: 34
+cde3.txt
+thirdtestfordirectory3
+Num of Bytes: 23
+vut5.txt
+thisisthe5thtestfordirectory2
+here is other line in vut5 testing testing.
+
+Num of Bytes: 75
+yxw2.txt
+thisismy2ndtestfordirectory2
+Num of Bytes: 29
+fgh5.txt
+thiswillbethefinald1test5
+Num of Bytes: 26
+zyx1.txt
+thisisfirsttestfordirectory2
+Num of Bytes: 29
+abc1.txt
+goodtestrunplzseethis1
+Num of Bytes: 23
+bcd2.txt
+thisisanothertest2
+Num of Bytes: 19
+efg4.txt
+thiswillbethed1test4
+Num of Bytes: 21
+xwv3.txt
+thisisthe3rdtestfordirectory2
+Num of Bytes: 30
