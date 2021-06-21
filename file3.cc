@@ -37,7 +37,6 @@ typedef struct file_info
 {
     string name;
     string content;
-    string path;
     int numOfBytes;
 } file;
 
@@ -190,8 +189,6 @@ int main()
         close(fd[p1][WRITE_END]);
     }
 
-    while ((wpid = wait(&status)) > 0)
-        ;
-    cout << "test" << endl;
+    while ((wpid = wait(&status)) > 0);
     exit(0);
 }
